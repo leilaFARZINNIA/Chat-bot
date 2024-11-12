@@ -1,4 +1,6 @@
 from datetime import datetime
+import time
+import random  # Importieren des Zufallsmoduls für zufällige Auswahl
 
 def get_welcome_message():
     return "Hallo!"
@@ -31,3 +33,25 @@ def handle_input(user_input):
     # return f"Sie habe gesagt: {user_input}"
     else:
         return "Es tut mir leid, ich kenne diese Frage nicht. Bitte Stelle Sie eine andere Frage."
+    
+def get_current_time():
+    # Funktion zum Abrufen der aktuellen Uhrzeit im Format HH:MM:SS
+    return time.strftime("%H:%M:%S")
+
+def print_message(sender, message):
+    # Funktion zum Anzeigen einer Nachricht mit Uhrzeit, Sender und Nachrichtentext
+    aktuelle_zeit = get_current_time()
+    print(f"{aktuelle_zeit} {sender}: {message}")
+
+
+def get_random_massage():
+    # Liste mit Begrüßungen auf Deutsch
+    begruessungen = ["Hallo!", "Guten Tag!", "Hey! Wie geht's?", "Hallo! Schön, dich hier zu sehen."]
+    
+    # Liste mit Einstiegsfragen auf Deutsch
+    fragen = ["Wie kann ich Ihnen heute helfen?", "Woran denken Sie gerade?", 
+              "Gibt es etwas, bei dem ich Ihnen helfen kann?", "Wie war Ihr Tag bisher?"]
+
+    # Zufällige Auswahl einer Begrüßung und einer Frage
+    print_message("Chatbot", random.choice(begruessungen))
+    print_message("Chatbot", random.choice(fragen))
