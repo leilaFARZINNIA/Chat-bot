@@ -21,7 +21,9 @@ predefined_answers = {
     "Hast du einen Lieblingsfilm?": "Ich mag alle Filme von Jacki chan",
     "Wo wohnst du?": "Ich wohne in jeder Computer, der mich installiert hat",
     "Kannst du tanzen?": "Sehr gut, hahaha",
-    "Was ist deine Lieblingsfarbe?": "Meine Lieblingsfarbe sind Blau and Grun"
+    "Was ist deine Lieblingsfarbe?": "Meine Lieblingsfarbe sind Blau and Grun",
+    "wie geht es dir?": "Mir geht es gut, danke!",
+    "was ist dein name?": "Mein Name ist Chatbot."
 }
 
 

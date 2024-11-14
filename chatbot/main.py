@@ -1,22 +1,24 @@
-import argparse
+# import argparse
 from utils import format_message
+from parse_args import parsing_args
 from responses import get_welcome_message, get_opening_question, handle_input, get_random_massage
 
 def main():
-    parser = argparse.ArgumentParser(description="Chatbot Konsole App")
-    parser.add_argument("--question", type=str, help="Stellen Sie direkt eine Frage")
-    args = parser.parse_args()
-
-    if args.question:
-        response = handle_input(args.question)
-        if response:
-            print(format_message("Chatbot", response))
-        else:
-            print(format_message("Chatbot", "bye"))
-        return
+    # parser = argparse.ArgumentParser(description="Chatbot Konsole App")
+    # parser.add_argument("--question", type=str, help="Stellen Sie direkt eine Frage")
+    # args = parser.parse_args()
+    # if args.question:
+    #    response = handle_input(args.question)
+    #    if response:
+    #        print(format_message("Chatbot", response))
+    #    else:
+    #        print(format_message("Chatbot", "bye"))
+    #    return
 
     # print(format_message("Chatbot", get_welcome_message()))
     # print(format_message("Chatbot", get_opening_question()))
+
+    parsing_args();
     get_random_massage()
 
     while True:
