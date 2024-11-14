@@ -1,7 +1,7 @@
 import argparse
 
 from utils import format_message
-from responses import handle_input
+from responses import handle_input, get_random_massage
 
 # Funktion zur Generierung der Antwort basierend auf der Frage
 # def antwort_generieren(question, antworten_dict):
@@ -44,6 +44,8 @@ def parsing_args():
         else:
             print(format_message("Chatbot", "bye"))
         return
+    else:
+        get_random_massage()
     
 # Ausführen der Hauptfunktion
 #if __name__ == "__main__":
