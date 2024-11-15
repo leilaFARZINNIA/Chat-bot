@@ -1,4 +1,11 @@
-# python3 -m venv path/to/venv
-# source path/to/venv/bin/activate
-# python3 -m pip install pytest
-# pytest tests/
+> python3 -m venv path/to/venv      : Dieser Befehl wird verwendet,
+um eine virtuelle Umgebung (Virtual Environment) in Python zu erstellen.
+
+> source path/to/venv/bin/activate  : Dieser Befehl wird verwendet,
+um eine virtuelle Python-Umgebung (Virtual Environment) zu aktivieren.
+
+> python3 -m pip install pytest     : Der Befehl wird verwendet,
+um das Python-Paket pytest zu installieren.
+
+> pytest tests/ : Dieser Befehl führt die Tests in einem Verzeichnis namens tests/ aus.
+> deactivate    : Dieser Befehl bringt dich zurück in die normale Systemumgebung.
