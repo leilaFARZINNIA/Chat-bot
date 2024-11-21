@@ -1,25 +1,34 @@
+# Funktion zum Zerlegen und Erkennen von zusammengesetzten Fragen
 def frage_zerlegen(eingabe):
-    # Überprüfen, ob die Eingabe gültig ist (nicht None und nicht leer)
-    if not isinstance(eingabe, str) or not eingabe.strip():
-        print("Ungültige Eingabe! Bitte geben Sie eine gültige Frage ein.")
-        return []  # Leere Liste zurückgeben, wenn die Eingabe ungültig ist
+  
+    if not eingabe:
+        return []  
 
-    # Zerlegen der Eingabe in einzelne Fragen basierend auf '?'
-    fragen_liste = eingabe.split("?")
-    
-    # Entfernen von Leerzeichen und Hinzufügen des '?' für jede Frage
-    fragen_liste = [frage.strip() + "?" for frage in fragen_liste if frage.strip()]
-    
+    # Zerlegen der Eingabe anhand von Trennzeichen (wie '?', 'und', 'oder')
+    trennzeichen = ['?', ' und ', ' oder ']
+    fragen_liste = [eingabe]
+
+    # Wiederholtes Zerlegen anhand der definierten Trennzeichen
+    for trenn in trennzeichen:
+        neue_fragen_liste = []
+        for frage in fragen_liste:
+            neue_fragen_liste.extend(frage.split(trenn))
+        fragen_liste = neue_fragen_liste
+
+    # Entfernen von Leerzeichen und leeren Einträgen
+    fragen_liste = [frage.strip() + '?' for frage in fragen_liste if frage.strip()]
     return fragen_liste
 
 
-# Hauptprogramm
+# Beispielhafte Verwendung der Funktion
 if __name__ == "__main__":
-    eingabe = input("Bitte geben Sie eine oder mehrere Fragen ein: ")
+    print("Willkommen! Geben Sie eine zusammengesetzte Frage ein.")
+    eingabe = input("Ihre Frage: ")
     fragen = frage_zerlegen(eingabe)
+
     if fragen:
-        print("Zerlegte Fragen:")
-        for frage in fragen:
-            print("-", frage)
+        print("Die folgenden Fragen wurden erkannt:")
+        for idx, frage in enumerate(fragen, 1):
+            print(f"{idx}. {frage}")
     else:
-        print("Keine gültigen Fragen gefunden.")
+        print("Keine gültigen Fragen erkannt.")
