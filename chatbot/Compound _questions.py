@@ -28,6 +28,18 @@ def antwort_finden(fragen, wissensbasis):
     return antworten
 
 
+# Funktion zum Kombinieren der Antworten
+def antworten_kombinieren(antworten):
+    # Variable zum Speichern der kombinierten Antworten
+    kombinierte_antwort = ""
+    # Iteration über die Liste der Antworten
+    for idx, antwort in enumerate(antworten):
+        # Nummer und Text der Antwort hinzufügen
+        kombinierte_antwort += f"Antwort {idx + 1}: {antwort}\n"
+    # Die kombinierten Antworten zurückgeben
+    return kombinierte_antwort
+
+
 # Beispielhafte Wissensbasis mit Fragen und Antworten
 wissensbasis = {
     "wann beginnt das semester?": "Das Semester beginnt am 1. Oktober.",
@@ -52,8 +64,9 @@ if __name__ == "__main__":
         # Finden der Antworten für die erkannten Fragen
         antworten = antwort_finden(fragen, wissensbasis)
 
-        print("\nDie passenden Antworten sind:")
-        for idx, antwort in enumerate(antworten, 1):
-            print(f"{idx}. {antwort}")
+        # Kombinieren der Antworten und Ausgabe
+        kombinierte_antworten = antworten_kombinieren(antworten)
+        print("\nDie kombinierten Antworten sind:")
+        print(kombinierte_antworten)
     else:
         print("Keine gültigen Fragen erkannt.")
