@@ -1,7 +1,6 @@
-# import argparse
 from utils import format_message
 from parse_args import parsing_args
-from responses import get_welcome_message, get_opening_question, handle_input
+from responses import handle_input
 
 def main():
 
