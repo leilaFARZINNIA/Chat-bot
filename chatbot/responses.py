@@ -8,41 +8,81 @@ def get_welcome_message():
 def get_opening_question():
     return "Wie kann ich Ihnen behilflich sein?"
 
+
 #پاسخ های هر مقدار به لیست تبدیل شد
 predefined_answers = {
-    "Wie heißt du?": ["I am Chatbot."],
-    "Wie funktioniert diese App?": ["Sie Stellen Fragen und ich antworte"],
-    "Wie spät ist es?": [f"Es ist {datetime.now().strftime('%H:%M:%S')} Uhr."],
-    "Wie geht es dir?": ["Es geht mir gut, bis deinem Computer gut geht."],
-    "Was ist dein Zweck?": ["Ich bin hier um dir zu helfen."],
-    "Wer hat dich entwickelt?": ["Ich wurde von Project9 Teammitgelider entwickelt."],
-    "Kannst du mir einen Witz erzählen?": ["Sorry nein, aktuell kann ich dir keinen Witz erzählen"],
-    "Was ist dein Lieblingstier?": ["Mein Lieblingstier ist Pfau"],
-    "Hast du einen Lieblingsfilm?": ["Ich mag alle Filme von Jacki chan"],
-    "Wo wohnst du?": ["Ich wohne in jeder Computer, der mich installiert hat"],
-    "Kannst du tanzen?": ["Sehr gut, hahaha"],
-    "Was ist deine Lieblingsfarbe?": ["Meine Lieblingsfarbe sind Blau and Grun"],
-    "wie geht es dir?": ["Mir geht es gut, danke!"],
-    "was ist dein name?": ["Mein Name ist Chatbot."],
-    "Wie funktioniert diese App?": [
-        "Diese App hilft Ihnen bei Ihren Fragen.",
-        "Stellen Sie eine Frage, und ich werde versuchen zu antworten.",
-        "Ich bin hier, um Ihnen Informationen zu geben.",
-        "Ich kann viele Fragen beantworten. Probieren Sie es aus!"
+    "Was ist Informationstechnologie?": [
+        "Informationstechnologie (IT) umfasst die Nutzung von Computern, Netzwerken und Software zur Verarbeitung, Speicherung und Übertragung von Daten.",
+        "IT ist ein Bereich, der sich mit der Entwicklung, Wartung und Nutzung von Technologien zur Verwaltung von Informationen beschäftigt.",
+        "Die Informationstechnologie ermöglicht es, digitale Daten effizient zu organisieren und darauf zuzugreifen.",
+        "IT beschreibt alle Technologien, die in Verbindung mit der Speicherung und Verarbeitung von Informationen stehen.",
+        "Es handelt sich um einen zentralen Bestandteil moderner Unternehmen, der Systeme wie Datenbanken, Cloud-Dienste und Netzwerke umfasst."
     ],
-    "Wie heißt du?": [
-        "Ich heiße Chatbot.",
-        "Nennen Sie mich einfach Bot.",
-        "Ich bin Ihr virtueller Assistent.",
-        "Mein Name ist Chatbot, schön Sie kennenzulernen!"
+    "Was versteht man unter IT?": [
+        "IT steht für Informationstechnologie und bezeichnet die Anwendung von Technologie zur Verwaltung von Informationen.",
+        "IT bezieht sich auf Hardware, Software und Netzwerke, die zusammenarbeiten, um Daten zu speichern und zu verarbeiten.",
+        "Der Begriff umfasst Technologien wie Server, Betriebssysteme und Kommunikationsprotokolle.",
+        "IT ermöglicht es Unternehmen, Geschäftsprozesse zu automatisieren und Daten sicher zu verwalten.",
+        "Sie beschreibt den Einsatz moderner Technologien, um Daten effizienter zu nutzen."
     ],
-    "Wie geht es dir?": [
-        "Mir geht es gut, danke der Nachfrage.",
-        "Ich fühle mich großartig!",
-        "Alles läuft perfekt hier.",
-        "Danke, mir geht's wunderbar!"
+    "Kannst du erklären, was IT ist?": [
+        "IT ist die Abkürzung für Informationstechnologie, ein Bereich, der sich mit Computern und Netzwerken befasst.",
+        "Es ist die Basis für alle digitalen Dienstleistungen, von E-Mails bis hin zu großen Datenanalysen.",
+        "Informationstechnologie spielt eine Schlüsselrolle in der Digitalisierung von Prozessen und Dienstleistungen.",
+        "Mit IT können Unternehmen ihre Produktivität steigern und Kunden besser bedienen.",
+        "Der Schwerpunkt liegt auf der Nutzung moderner Technologien zur Unterstützung von Geschäftsstrategien."
+    ],
+    "Was ist der Unterschied zwischen Software und Hardware?": [
+        "Hardware sind die physischen Komponenten eines Computers, wie Tastatur und Monitor. Software sind Programme wie Textverarbeitungs- oder Betriebssysteme.",
+        "Hardware kann angefasst werden, Software existiert nur als Code, der auf der Hardware läuft.",
+        "Beispiele für Hardware sind CPU, RAM und Festplatte, während Software Anwendungen wie Microsoft Word oder ein Webbrowser sein können.",
+        "Ohne Hardware kann Software nicht funktionieren, und ohne Software ist Hardware nutzlos.",
+        "Hardware bildet die Grundlage, auf der Software arbeitet, und gemeinsam ermöglichen sie die Nutzung eines Computers."
+    ],
+    "Wie unterscheiden sich Hardware und Software?": [
+        "Hardware besteht aus materiellen Teilen wie Mainboards, während Software immaterielle Programme sind.",
+        "Software kann installiert, geändert oder gelöscht werden, Hardware muss physisch ersetzt werden.",
+        "Hardware wird hergestellt, Software wird programmiert.",
+        "Hardware arbeitet mit elektrischen Signalen, Software verarbeitet diese in Befehle.",
+        "Software bestimmt, wie die Hardware verwendet wird, etwa durch ein Betriebssystem oder eine App."
+    ],
+    "Was versteht man unter Cloud-Computing?": [
+        "Cloud-Computing ermöglicht den Zugriff auf Rechenressourcen über das Internet anstelle lokaler Computer.",
+        "Es bietet Flexibilität, da Benutzer Dienste wie Speicher und Anwendungen on-demand nutzen können.",
+        "Cloud-Dienste sind skalierbar und erleichtern Unternehmen den Umgang mit wechselnden Anforderungen.",
+        "Mit Cloud-Computing können Daten und Programme sicher gespeichert und von überall abgerufen werden.",
+        "Es gibt verschiedene Arten von Clouds: öffentliche, private und hybride Clouds."
+    ],
+    "Kannst du Cloud-Computing erklären?": [
+        "Cloud-Computing bedeutet, dass Dienste wie Speicherplatz oder Rechenleistung über das Internet bereitgestellt werden.",
+        "Es ist eine Technologie, die es Benutzern ermöglicht, Hardware und Software ohne physische Nähe zu nutzen.",
+        "Ein Vorteil des Cloud-Computings ist die Kosteneffizienz, da keine eigene Infrastruktur benötigt wird.",
+        "Daten in der Cloud sind meist besser gesichert und leichter zugänglich.",
+        "Beispiele für Cloud-Anbieter sind Amazon Web Services (AWS), Microsoft Azure und Google Cloud."
+    ],
+    "Was ist künstliche Intelligenz (KI)?": [
+        "KI bezeichnet die Fähigkeit von Maschinen, menschenähnliche Aufgaben wie Lernen und Problemlösen auszuführen.",
+        "Mit KI können Systeme Daten analysieren, Vorhersagen treffen und eigenständig Entscheidungen treffen.",
+        "Es handelt sich um ein Teilgebiet der Informatik, das Maschinen intelligentes Verhalten verleiht.",
+        "Beispiele für KI-Anwendungen sind Chatbots, Gesichtserkennung und autonome Fahrzeuge.",
+        "KI nutzt Algorithmen und Modelle wie maschinelles Lernen, um aus Daten zu lernen und sich anzupassen."
+    ],
+    "Wie würdest du künstliche Intelligenz beschreiben?": [
+        "Künstliche Intelligenz ist die Simulation menschlicher Intelligenz durch Computer.",
+        "KI ermöglicht Maschinen, Aufgaben zu erledigen, die normalerweise menschliches Denken erfordern.",
+        "Es umfasst Technologien wie neuronale Netze, Machine Learning und Natural Language Processing.",
+        "KI ist in vielen Bereichen präsent, von Gesundheitswesen bis zu selbstfahrenden Autos.",
+        "Die Entwicklung von KI revolutioniert die Art und Weise, wie wir mit Maschinen interagieren."
+    ],
+    "Was ist Big Data?": [
+        "Big Data beschreibt große, komplexe Datenmengen, die nicht mit traditionellen Methoden verarbeitet werden können.",
+        "Diese Daten werden analysiert, um wertvolle Einblicke und Trends zu gewinnen.",
+        "Big Data wird in Bereichen wie Marketing, Gesundheitswesen und Finanzen genutzt.",
+        "Es erfordert spezialisierte Tools und Techniken wie Hadoop und Spark zur Verarbeitung.",
+        "Ein Vorteil von Big Data ist die Möglichkeit, bessere Entscheidungen auf Grundlage von Daten zu treffen."
     ]
 }
+
 
 
 
