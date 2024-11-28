@@ -23,13 +23,12 @@ def frage_zerlegen(eingabe):
 
 
 # Funktion zum Finden der Antworten für die Fragen
-def antwort_finden(fragen, wissensbasis):
-    """
-    Diese Funktion durchsucht die Wissensbasis nach Antworten für die gegebenen Fragen.
-    """
+def antwort_finden(fragen, dics):
+
     antworten = []
     for frage in fragen:
-        antwort = wissensbasis.get(frage.lower(), "Entschuldigung, ich kenne die Antwort auf diese Frage nicht.")
+        case_insensitive_dics = {key.lower(): value for key, value in dics.items()}
+        antwort = case_insensitive_dics.get(frage.lower(), "Entschuldigung, ich kenne die Antwort auf diese Frage nicht.")
         antworten.append(antwort)
     return antworten
 
@@ -45,7 +44,7 @@ def antworten_kombinieren(antworten):
     for idx, antwort in enumerate(antworten):
         # Nummer und Text der Antwort hinzufügen
 
-        kombinierte_antwort += f"{random.choice(antwort)}\n"
+        kombinierte_antwort += f"\n{random.choice(antwort)}"
     # Die kombinierten Antworten zurückgeben
     return kombinierte_antwort
 
@@ -66,7 +65,7 @@ def erkenne_begrüßung(eingabe):
     return None  # Keine Begrüßung erkannt
 
 
-# Beispielhafte Wissensbasis mit Fragen und Antworten
+# Beispielhafte Fragen und Antworten
 wissensbasis = {
     "a1a1a 123?": [
         "aaaa",
@@ -91,7 +90,7 @@ def compund_question(eingabe, fragen_liste):
     # Erkennung von Begrüßungen
     begruessungs_antwort = erkenne_begrüßung(eingabe)
     if begruessungs_antwort:
-        print(begruessungs_antwort)
+        return begruessungs_antwort
     else:
         # Zerlegen der Eingabe in einzelne Fragen
         fragen = frage_zerlegen(eingabe)
@@ -104,4 +103,4 @@ def compund_question(eingabe, fragen_liste):
             kombinierte_antworten = antworten_kombinieren(antworten)
             return kombinierte_antworten
         else:
-            print("Keine gültigen Fragen erkannt.")
+            return "Keine gültigen Fragen erkannt."

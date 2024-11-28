@@ -1,6 +1,7 @@
 from datetime import datetime
 import time
 import random  
+from multie_responses import compund_question
 
 def get_welcome_message():
     return "Hallo!"
@@ -89,12 +90,15 @@ predefined_answers = {
 def handle_input(user_input):
     if user_input.lower() == "bye":
         return None  # Das Gespräch zu Ende zu bringen
-    elif user_input in predefined_answers:
-        # return predefined_answers[user_input]
-        possible_answers = predefined_answers[user_input]
-        return random.choice(possible_answers)
+    # elif user_input in predefined_answers:
+    #     # return predefined_answers[user_input]
+    #     possible_answers = predefined_answers[user_input]
+    #     return random.choice(possible_answers)
+    # else:
+    #     return "Es tut mir leid, ich kenne diese Frage nicht. Bitte Stelle Sie eine andere Frage."
+
     else:
-        return "Es tut mir leid, ich kenne diese Frage nicht. Bitte Stelle Sie eine andere Frage."
+        return compund_question(user_input, predefined_answers)
     
 def get_current_time():
     return time.strftime("%H:%M:%S")
