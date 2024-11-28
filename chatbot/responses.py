@@ -2,7 +2,7 @@ from datetime import datetime
 import time
 import random  
 from multie_responses import compund_question
-
+from suggested_answer import word_in_questions
 def get_welcome_message():
     return "Hallo!"
 
@@ -85,18 +85,15 @@ predefined_answers = {
 }
 
 
-
+def is_one_word(text):
+    return ' ' not in text.strip() and len(text.strip()) > 0
 
 def handle_input(user_input):
     if user_input.lower() == "bye":
         return None  # Das Gespräch zu Ende zu bringen
-    # elif user_input in predefined_answers:
-    #     # return predefined_answers[user_input]
-    #     possible_answers = predefined_answers[user_input]
-    #     return random.choice(possible_answers)
-    # else:
-    #     return "Es tut mir leid, ich kenne diese Frage nicht. Bitte Stelle Sie eine andere Frage."
-
+    elif is_one_word(user_input):
+        word_in_questions(user_input, predefined_answers)
+        return None
     else:
         return compund_question(user_input, predefined_answers)
     

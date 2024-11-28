@@ -64,26 +64,6 @@ def erkenne_begrüßung(eingabe):
 
     return None  # Keine Begrüßung erkannt
 
-
-# Beispielhafte Fragen und Antworten
-wissensbasis = {
-    "a1a1a 123?": [
-        "aaaa",
-        "bbb",
-        "ccc",
-    ],
-    "ff11f 12?": [
-        "ffff jjj",
-        "kkk",
-        "lll",
-    ],
-    "oo11o 12223?": [
-        "rrrr",
-        "ssss",
-        "zzzz",
-    ]
-}
-
 # Hauptprogramm
 def compund_question(eingabe, fragen_liste):
 
