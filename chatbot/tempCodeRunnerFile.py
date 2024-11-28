@@ -1,1 +1,0 @@
-bis wann muss ich den semesterbeitrag bezahlen?
