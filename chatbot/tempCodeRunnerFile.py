@@ -1,0 +1,1 @@
+parser.add_argument("--search", "-s", type=str, help="Sucht nach Fragen, die das Stichwort enthalten")
