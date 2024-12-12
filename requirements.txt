@@ -15,3 +15,6 @@ How to import data from CSV file:
 
 How to add answer
 > python3 chatbot/main.py --add --question-for-edit "question a" --answer-for-adit "answer a 1"
+
+How to remove answer
+> python3 chatbot/main.py --remove --question-for-edit "question a" --answer-for-adit "answer a 1"
