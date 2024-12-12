@@ -6,7 +6,8 @@ def main():
 
     returned_value = parsing_args()
 
-    if(returned_value == "importing-file"): return
+    if(returned_value == "importing-file" or returned_value == None): return
+    print("returned_value: ", returned_value)
 
 
     while True:

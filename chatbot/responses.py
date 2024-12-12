@@ -12,18 +12,17 @@ def get_opening_question():
     return "Wie kann ich Ihnen behilflich sein?"
 
 
-predefined_answers = read_csv_to_dict("data.csv")
-
-
 def is_one_word(text):
     return ' ' not in text.strip() and len(text.strip()) > 0
 
 def handle_input(user_input):
 
+    predefined_answers = read_csv_to_dict("data.csv")
+    
     # Das Gespräch zu Ende zu bringen
     if user_input.lower() == "bye":
         return None 
-    
+        
     elif is_one_word(user_input):
         word_in_questions(user_input, predefined_answers)
     else:
