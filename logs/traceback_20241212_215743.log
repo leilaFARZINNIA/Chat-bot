@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/mohammad/developing/UniProjects/erstsemester-projekt-g9/chatbot/read_data.py", line 13, in read_csv_to_dict
+    next(reader)
+StopIteration
