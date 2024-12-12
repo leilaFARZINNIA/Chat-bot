@@ -11,24 +11,10 @@ def list_questions(file_name="data.csv"):
     for index, question in enumerate(knowledge_base.keys(), start=1):
         print(f"{index}. {question}")
 
-def search_question(search_term, file_name="data.csv"):
-    knowledge_base = read_csv_to_dict(file_name)
-    
-    print(f"Ergebnisse für '{search_term}':")
-    found = False
-    for index, (question, answers) in enumerate(knowledge_base.items(), start=1):
-        if search_term.lower() in question.lower():
-            found = True
-            print(f"{index}. {question}")
-            print()
-    if not found:
-        print(f"Keine Fragen gefunden, die '{search_term}' enthalten.")
-
 def parsing_args():
     parser = argparse.ArgumentParser(description="Chatbot Konsole App")
     parser.add_argument("--question", type=str, help="Stellen Sie direkt eine Frage")
     parser.add_argument("--list-questions", "-q", action="store_true", help="Zeigt alle Fragen aus der Wissensbasis an")
-    parser.add_argument("--search", "-s", type=str, help="Sucht nach Fragen, die das Stichwort enthalten")
     parser.add_argument("--importing", action="store_true", help="Flagge zum Importieren neuer Daten und Ersetzen der bestehenden Wissensbasis")
     parser.add_argument("--filetype", choices=["CSV"], help="Dateityp (derzeit wird nur CSV unterstützt)")
     parser.add_argument("--existingfile", help="Pfad zur vorhandenen CSV-Datei (data.csv)")
@@ -39,24 +25,20 @@ def parsing_args():
 
     if args.list_questions:
         list_questions()
-        return
-
-    elif args.search:
-        search_question(args.search)
-        return
+        return "list-questions"
 
     elif args.question:
         response = handle_input(args.question)
-        if response:
-            print(format_message("Chatbot", response))
-        else:
-            print(format_message("Chatbot", "bye"))
-        return
+
+        if response: print(format_message("Chatbot", response))
+
+        return "commandline-ask"
     
     elif args.importing and args.filetype == "CSV":
         new_data = read_csv_to_dict(args.newfile)
         if new_data and validate_data(new_data):
             write_dict_to_csv(args.outputfile, new_data)
-            return
+            return "importing-file"
     else:
         get_random_massage()
+        return "nothing"

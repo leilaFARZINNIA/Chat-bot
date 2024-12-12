@@ -51,9 +51,6 @@ def antworten_kombinieren(antworten):
 
 # Funktion zum Erkennen von Begrüßungen und nicht-fragenden Eingaben
 def erkenne_begrüßung(eingabe):
-    """
-    Diese Funktion erkennt Begrüßungen und reagiert entsprechend.
-    """
     # Liste von Schlüsselwörtern für Begrüßungen
     begruessungs_worte = ["hallo", "guten tag", "hi", "servus", "grüß gott"]
 
@@ -65,7 +62,7 @@ def erkenne_begrüßung(eingabe):
     return None  # Keine Begrüßung erkannt
 
 # Hauptprogramm
-def compund_question(eingabe, fragen_liste):
+def compuond_question(eingabe, fragen_liste):
 
     # Erkennung von Begrüßungen
     begruessungs_antwort = erkenne_begrüßung(eingabe)

@@ -8,7 +8,7 @@ def word_in_questions(keyword, questions):
     # Prüfen Sie, ob es passende Fragen gibt
     if not matching_questions:
         print("Keine passenden Fragen für das Stichwort gefunden.")
-        return
+        return "nomatch"
 
     # Anzeige der passenden Fragen als nummerierte Liste
     print("Passende Fragen:")
@@ -21,9 +21,8 @@ def word_in_questions(keyword, questions):
         if 1 <= choice <= len(matching_questions):
             selected_question = matching_questions[choice - 1]
             print(f"\nAntworten für '{selected_question}':")
-            # for idx, answer in enumerate(questions[selected_question], start=1):
-            #     print(f"{idx}. {answer}")
             print(random.choice(questions[selected_question]))
+            
         else:
             print("Ungültige Auswahl. Bitte wählen Sie eine gültige Nummer.")
     except ValueError:

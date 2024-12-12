@@ -9,3 +9,6 @@ um das Python-Paket pytest zu installieren.
 
 > pytest tests/ : Dieser Befehl führt die Tests in einem Verzeichnis namens tests/ aus.
 > deactivate    : Dieser Befehl bringt dich zurück in die normale Systemumgebung.
+
+How to import data from CSV file:
+> python3 chatbot/main.py --importing --filetype CSV --existingfile data.csv --newfile new_data.csv --outputfile data.csv
