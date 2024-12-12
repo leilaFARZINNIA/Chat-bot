@@ -2,7 +2,7 @@ import argparse
 from utils import format_message
 
 from responses import handle_input, get_random_massage
-from read_data import add_answer, read_csv_to_dict, remove_answer, write_dict_to_csv, validate_data
+from read_data import add_answer, read_csv_to_dict, remove_answer, write_dict_to_csv, validate_data, add_question, remove_question
 
 def list_questions(file_name="data.csv"):
     knowledge_base = read_csv_to_dict(file_name)
@@ -22,8 +22,10 @@ def parsing_args():
     parser.add_argument("--outputfile", help="Pfad zum Speichern der aktualisierten CSV-Datei (new_data.csv)")
     parser.add_argument("--add", action="store_true", help="Add a new answer to an existing question or add a new question with an answer.")
     parser.add_argument("--remove", action="store_true", help="Remove a specific answer from a question.")
-    parser.add_argument("--question-for-edit", type=str, required=True, help="The question to modify.")
-    parser.add_argument("--answer-for-adit", type=str, required=True, help="The answer to add or remove.")
+    parser.add_argument("--question-for-edit", type=str, help="The question to modify.")
+    parser.add_argument("--answer-for-adit", type=str, help="The answer to add or remove.")
+    parser.add_argument("--add-question", type=str, help="The question to modify.")
+    parser.add_argument("--remove-question", type=str, help="The question remove.")
 
     args = parser.parse_args()
 
@@ -34,11 +36,19 @@ def parsing_args():
         # Load the existing data
         data_as_dictionary = read_csv_to_dict(csv_data)
 
-        if args.add:
+        if args.add and args.add_question:
+            add_question(data_as_dictionary, csv_data, args.add_question, args.answer_for_adit)
+            return "adding-question"
+        
+        elif args.remove and args.remove_question:
+            remove_question(data_as_dictionary, csv_data, args.remove_question)
+            return "removing-question"
+
+        elif args.add and args.question_for_edit:
             add_answer(data_as_dictionary, csv_data, args.question_for_edit, args.answer_for_adit)
             return "adding-answer"
         
-        elif args.remove:
+        elif args.remove and args.question_for_edit:
             remove_answer(data_as_dictionary, csv_data, args.question_for_edit, args.answer_for_adit)
             return "removing-answer"
 

@@ -137,4 +137,24 @@ def remove_answer(data_as_dictionary, file_path, question, answer_to_remove):
         print(f"Die Antwort '{answer_to_remove}' wurde erfolgreich aus der Frage '{question}' entfernt.")
 
     except Exception as e:
+        log_error(e)
+        print(f"Fehler beim Entfernen der Antwort: {e}")
+
+
+# dic = { question1: [a1, a2] }
+
+def add_question(data_as_dictionary, file_path, question, new_answer):
+    add_answer(data_as_dictionary, file_path, question, new_answer)
+
+def remove_question(data_as_dictionary, file_path, question):
+    try:
+    
+        if (data_as_dictionary[question]):
+            del data_as_dictionary[question]
+
+        write_dict_to_csv(file_path, data_as_dictionary)
+        print(f"Die Frage '{question}' wurde erfolgreich aus Dictionary entfernt.")
+
+    except Exception as e:
+        log_error(e)
         print(f"Fehler beim Entfernen der Antwort: {e}")
