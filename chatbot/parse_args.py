@@ -1,5 +1,6 @@
 import argparse
 from utils import format_message
+
 from responses import handle_input, get_random_massage
 from read_data import read_csv_to_dict, write_dict_to_csv, validate_data
 
