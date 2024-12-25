@@ -158,3 +158,21 @@ def remove_question(data_as_dictionary, file_path, question):
     except Exception as e:
         log_error(e)
         print(f"Fehler beim Entfernen der Antwort: {e}")
+
+
+import csv
+
+def load_questions_from_csv(file_name):
+    questions = []
+    
+    with open(file_name, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            question = {
+                'question': row['question'],
+                'choices': [row['choice1'], row['choice2'], row['choice3'], row['choice4']],
+                'correct_answer': row['correct_answer']
+            }
+            questions.append(question)
+    
+    return questions
