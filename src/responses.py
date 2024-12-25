@@ -17,7 +17,7 @@ def is_one_word(text):
 
 def handle_input(user_input):
 
-    predefined_answers = read_csv_to_dict("data.csv")
+    predefined_answers = read_csv_to_dict("data/data.csv")
     
     # Das Gespräch zu Ende zu bringen
     if user_input.lower() == "bye":

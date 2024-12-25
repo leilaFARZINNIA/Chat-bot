@@ -1,4 +1,4 @@
-# from chatbot.responses import get_welcome_message, get_opening_question
+# from src.responses import get_welcome_message, get_opening_question
 
 # def test_get_welcome_message():
 #     assert get_welcome_message() == "Hallo!"
