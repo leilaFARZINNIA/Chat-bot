@@ -160,8 +160,6 @@ def remove_question(data_as_dictionary, file_path, question):
         print(f"Fehler beim Entfernen der Antwort: {e}")
 
 
-import csv
-
 def load_questions_from_csv(file_name):
     questions = []
     

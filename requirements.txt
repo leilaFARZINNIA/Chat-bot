@@ -11,19 +11,22 @@ um das Python-Paket pytest zu installieren.
 > deactivate    : Dieser Befehl bringt dich zurück in die normale Systemumgebung.
 
 How to import data from CSV file:
-> python3 chatbot/main.py --importing --filetype CSV --newfile data/new_data.csv --outputfile data/data.csv
+> python3 src/main.py --importing --filetype CSV --newfile data/new_data.csv --outputfile data/data.csv
 
 How to add answer
-> python3 chatbot/main.py --add --question-for-edit "question a" --answer-for-adit "answer a 1"
+> python3 src/main.py --add --question-for-edit "question a" --answer-for-adit "answer a 1"
 
 How to remove answer
-> python3 chatbot/main.py --remove --question-for-edit "question a" --answer-for-adit "answer a 1"
+> python3 src/main.py --remove --question-for-edit "question a" --answer-for-adit "answer a 1"
 
 How to list question
-> python3 chatbot/main.py --list-questions
+> python3 src/main.py --list-questions
 
 How to remove question
-> python3 chatbot/main.py --remove --remove-question "question a"
+> python3 src/main.py --remove --remove-question "question a"
 
 How to add question
-> python3 chatbot/main.py --add --add-question "question a" --answer-for-adit "answer 1"
+> python3 src/main.py --add --add-question "question a" --answer-for-adit "answer 1"
+
+How to test all files at once
+> python3 -m unittest discover -s tests -p "test_*.py"
