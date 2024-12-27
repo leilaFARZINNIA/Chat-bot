@@ -1,4 +1,4 @@
-from src.utils import format_message
+from src.utils.formats import format_message
 import re
 
 def test_format_message():

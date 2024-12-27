@@ -3,7 +3,6 @@ import random
 from multie_responses import compuond_question
 from suggested_answer import word_in_questions
 from read_data import read_csv_to_dict
-from utils import format_message
 
 def get_welcome_message():
     return "Hallo!"

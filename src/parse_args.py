@@ -1,67 +1,11 @@
 import argparse
-import random
-from utils import format_message
+import logging
 
+from quiz import start_quiz
+from utils.formats import format_message
+from utils.logging import setup_logging
 from responses import handle_input, get_random_massage
 from read_data import add_answer, read_csv_to_dict, remove_answer, write_dict_to_csv, validate_data, add_question, remove_question,load_questions_from_csv
-
-def start_quiz(file_name="data/questions.csv", num_questions=10):
-  
-    try:
-       
-        questions = load_questions_from_csv(file_name)
-        
-        if not questions:
-            print("⚠️ Keine Fragen im CSV-Dateiformat gefunden.")
-            return
-        
-        print("\n🎮 Willkommen zum Quiz-Spiel! Viel Spaß! 🎉\n")
-        
-        score = 0  
-        random.shuffle(questions)  
-        
-        
-        for i, question in enumerate(questions[:num_questions]):
-            print(f"Frage {i + 1}: {question['question']}")
-            for idx, choice in enumerate(question['choices'], start=1):
-                print(f"  {idx}. {choice}")
-            
-            
-            while True:
-                answer = input("\n📝 Geben Sie Ihre Antwort (1-4), oder 'exit' zum Verlassen ein: ").strip()
-                if answer.lower() == 'exit':  
-                    print("\n🚪 Sie haben das Spiel verlassen. Danke fürs Spielen!")
-                    print(f"🎯 Ihr Punktestand bis jetzt: {score}/{i + 1}\n")
-                    return
-                elif answer.isdigit() and 1 <= int(answer) <= 4:  
-                    break
-                else:
-                    print("❌ Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und 4 ein.")
-            
-            
-            chosen_answer = question['choices'][int(answer) - 1]
-            if chosen_answer == question['correct_answer']:
-                print("✅ Richtig!")
-                score += 1
-            else:
-                print(f"❌ Falsch!")
-            
-            
-            print(f"🔍 Die richtige Antwort ist: {question['correct_answer']}")
-            print()
-        
-        
-        print(f"🎉 Spiel beendet! Ihr Punktestand ist: {score}/{num_questions}\n")
-        if score == num_questions:
-            print("🏆 Perfekt! Sie haben alle Fragen richtig beantwortet!")
-        elif score > num_questions // 2:
-            print("👏 Gut gemacht! Versuchen Sie, noch besser zu werden.")
-        else:
-            print("💡 Übung macht den Meister! Probieren Sie es noch einmal.")
-    
-    except Exception as e:
-        print(f"❌ Ein Fehler ist aufgetreten: {e}")
-
 
 
 def list_questions(file_name="data/data.csv"):
@@ -70,8 +14,6 @@ def list_questions(file_name="data/data.csv"):
     print("Fragen in der Wissensbasis:")
     for index, question in enumerate(knowledge_base.keys(), start=1):
         print(f"{index}. {question}")
-
-
 
 def parsing_args():
 
@@ -90,13 +32,22 @@ def parsing_args():
     parser.add_argument("--remove-question", type=str, help="The question remove.")
     parser.add_argument("--start-quiz", action="store_true", help="Startet das Quiz-Spiel.")
  
-
+    # New logging arguments
+    parser.add_argument('--log', action='store_true', help='Enable logging')
+    parser.add_argument('--log-level', choices=['INFO', 'WARNING'], default='WARNING', help='Set log level')
 
 
 
     args = parser.parse_args()
 
+    # Setup logging based on the arguments
+    setup_logging(args.log, args.log_level)
+
     try:
+
+
+        if args.log:
+            logging.info('App started in logging mode.')
 
         csv_data = "data/data.csv"
      
@@ -135,9 +86,6 @@ def parsing_args():
             start_quiz()
             return "start-quiz"
         
-        
-        
-        
         elif args.importing and args.filetype == "CSV":
             new_data = read_csv_to_dict(args.newfile)
             if new_data and validate_data(new_data):
@@ -147,7 +95,5 @@ def parsing_args():
             get_random_massage()
             return "nothing"
         
-       
-    
     except Exception as e:
         print(f"An error occurred: {e}")

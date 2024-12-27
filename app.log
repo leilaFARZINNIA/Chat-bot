@@ -1,0 +1,9 @@
+2024-12-27 20:19:27,892 - INFO - Logging is enabled.
+2024-12-27 20:19:27,892 - INFO - App started in logging mode.
+2024-12-27 20:19:27,892 - INFO - Log info: quiz started
+INFO:root:Logging is enabled.
+INFO:root:App started in logging mode.
+INFO:root:Log info: quiz started
+2024-12-27 20:23:29,131 - INFO - logging.py - setup_logging - Line: 12 - Logging is enabled.
+2024-12-27 20:23:29,131 - INFO - parse_args.py - parsing_args - Line: 50 - App started in logging mode.
+2024-12-27 20:23:29,131 - INFO - quiz.py - start_quiz - Line: 8 - Log info: quiz started
