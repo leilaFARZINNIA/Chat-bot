@@ -4,3 +4,4 @@ path
 .pytest_cache
 logs
 new_data.csv
+app.log

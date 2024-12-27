@@ -1,3 +1,4 @@
+import logging
 from utils.formats import format_message
 from parse_args import parsing_args
 from responses import handle_input
@@ -24,5 +25,10 @@ def main():
         print(format_message("Chatbot", response))
 
 
+def exit_app():
+    if logging.getLogger().isEnabledFor(logging.INFO):
+        logging.info("Log info: App exited.\n")
+
 if __name__ == "__main__":
     main()
+    exit_app()

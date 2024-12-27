@@ -37,14 +37,12 @@ def parsing_args():
     parser.add_argument('--log-level', choices=['INFO', 'WARNING'], default='WARNING', help='Set log level')
 
 
-
     args = parser.parse_args()
 
     # Setup logging based on the arguments
     setup_logging(args.log, args.log_level)
 
     try:
-
 
         if args.log:
             logging.info('App started in logging mode.')
