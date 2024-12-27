@@ -8,3 +8,39 @@
 2024-12-27 20:53:05,668 - INFO - quiz.py - start_quiz - Line: 8 - Log info: Quiz started
 2024-12-27 20:53:09,613 - INFO - main.py - exit_app - Line: 30 - Log info: App exited.
 
+2024-12-27 21:08:12,652 - INFO - logging.py - setup_logging - Line: 12 - Logging is enabled.
+2024-12-27 21:08:12,652 - INFO - parse_args.py - parsing_args - Line: 48 - App started in logging mode.
+2024-12-27 21:08:24,197 - INFO - main.py - exit_app - Line: 30 - Log info: App exited.
+
+2024-12-27 21:14:22,431 - INFO - logging.py - setup_logging - Line: 12 - Logging is enabled.
+2024-12-27 21:14:22,431 - INFO - parse_args.py - parsing_args - Line: 48 - App started in logging mode.
+2024-12-27 21:16:23,142 - INFO - main.py - exit_app - Line: 30 - Log info: App exited.
+
+2024-12-27 21:16:47,875 - INFO - logging.py - setup_logging - Line: 12 - Logging is enabled.
+2024-12-27 21:16:47,875 - INFO - parse_args.py - parsing_args - Line: 48 - App started in logging mode.
+2024-12-27 21:17:03,865 - INFO - main.py - exit_app - Line: 30 - Log info: App exited.
+
+2024-12-27 21:17:46,727 - INFO - logging.py - setup_logging - Line: 12 - Logging is enabled.
+2024-12-27 21:17:46,727 - INFO - parse_args.py - parsing_args - Line: 48 - App started in logging mode.
+2024-12-27 21:17:46,727 - INFO - quiz.py - start_quiz - Line: 8 - Log info: Quiz started
+2024-12-27 21:18:08,923 - INFO - main.py - exit_app - Line: 30 - Log info: App exited.
+
+2024-12-27 21:20:16,750 - INFO - logging.py - setup_logging - Line: 12 - Logging is enabled.
+2024-12-27 21:20:16,750 - INFO - parse_args.py - parsing_args - Line: 48 - App started in logging mode.
+2024-12-27 21:21:10,992 - INFO - main.py - exit_app - Line: 30 - Log info: App exited.
+
+2024-12-27 21:35:10,105 - INFO - logging.py - setup_logging - Line: 12 - Logging is enabled.
+2024-12-27 21:35:10,107 - INFO - parse_args.py - parsing_args - Line: 48 - App started in logging mode.
+2024-12-27 21:35:10,107 - INFO - chatbot_game.py - play_game - Line: 8 - Log info: Quiz started
+2024-12-27 21:35:20,182 - INFO - main.py - exit_app - Line: 30 - Log info: App exited.
+
+2024-12-27 21:36:07,824 - INFO - logging.py - setup_logging - Line: 12 - Logging is enabled.
+2024-12-27 21:36:07,825 - INFO - parse_args.py - parsing_args - Line: 48 - App started in logging mode.
+2024-12-27 21:36:07,825 - INFO - chatbot_game.py - play_game - Line: 8 - Log info: Quiz started
+2024-12-27 21:36:40,833 - INFO - main.py - exit_app - Line: 30 - Log info: App exited.
+
+2024-12-27 21:39:02,929 - INFO - logging.py - setup_logging - Line: 12 - Logging is enabled.
+2024-12-27 21:39:02,930 - INFO - parse_args.py - parsing_args - Line: 48 - App started in logging mode.
+2024-12-27 21:39:02,930 - INFO - chatbot_game.py - play_game - Line: 8 - Log info: Quiz started
+2024-12-27 21:39:37,556 - INFO - main.py - exit_app - Line: 30 - Log info: App exited.
+

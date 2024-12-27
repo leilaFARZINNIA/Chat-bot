@@ -1,7 +1,7 @@
 import argparse
 import logging
 
-from quiz import start_quiz
+from chatbot_game import play_game
 from utils.formats import format_message
 from utils.logging import setup_logging
 from responses import handle_input, get_random_massage
@@ -30,7 +30,7 @@ def parsing_args():
     parser.add_argument("--answer-for-adit", type=str, help="The answer to add or remove.")
     parser.add_argument("--add-question", type=str, help="The question to modify.")
     parser.add_argument("--remove-question", type=str, help="The question remove.")
-    parser.add_argument("--start-quiz", action="store_true", help="Startet das Quiz-Spiel.")
+    parser.add_argument("--start-game", action="store_true", help="Startet das Quiz-Spiel.")
  
     # New logging arguments
     parser.add_argument('--log', action='store_true', help='Enable logging')
@@ -79,10 +79,9 @@ def parsing_args():
 
             return "commandline-ask"
         
-        elif args.start_quiz:
-            print("Ein Quiz-Spiel beginnt!")
-            start_quiz()
-            return "start-quiz"
+        elif args.start_game:
+            play_game()
+            return "start-game"
         
         elif args.importing and args.filetype == "CSV":
             new_data = read_csv_to_dict(args.newfile)
