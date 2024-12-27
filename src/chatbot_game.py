@@ -1,6 +1,6 @@
 import random
 import logging
-from read_data import load_questions_from_csv
+from file_handling import load_questions_from_csv
 
 def play_game(file_name="data/questions.csv"):
 

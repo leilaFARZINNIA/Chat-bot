@@ -1,8 +1,8 @@
 import time
 import random  
-from multie_responses import compuond_question
-from suggested_answer import word_in_questions
-from read_data import read_csv_to_dict
+from multi_responsing import compuond_question
+from answer_suggesting import word_in_questions
+from file_handling import read_csv_to_dict
 
 def get_welcome_message():
     return "Hallo!"
