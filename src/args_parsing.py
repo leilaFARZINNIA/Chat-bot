@@ -17,7 +17,15 @@ def list_questions(file_name="data/data.csv"):
 
 def parsing_args():
 
-    parser = argparse.ArgumentParser(description="Chatbot Konsole App")
+    parser = argparse.ArgumentParser(
+        description="Chatbot Konsole App: Ein Tool für Quiz, Fragenmanagement und CSV-Import.",
+        epilog="""Beispiele:
+    python main.py --list-questions         Zeigt alle Fragen an
+    python main.py --add-question "Frage"   Fügt eine neue Frage hinzu
+    python main.py --start-quiz             Startet das Quiz-Spiel
+    python main.py --remove-question "Frage" Entfernt eine Frage"""
+    )
+
     parser.add_argument("--question", type=str, help="Stellen Sie direkt eine Frage")
     parser.add_argument("--list-questions", "-q", action="store_true", help="Zeigt alle Fragen aus der Wissensbasis an")
     parser.add_argument("--importing", action="store_true", help="Flagge zum Importieren neuer Daten und Ersetzen der bestehenden Wissensbasis")
@@ -94,3 +102,8 @@ def parsing_args():
         
     except Exception as e:
         print(f"An error occurred: {e}")
+        
+    else:
+        print("❌ Fehler: Ungültige Eingabe oder kein Argument angegeben.")
+        parser.print_help()
+        return "show-help"
