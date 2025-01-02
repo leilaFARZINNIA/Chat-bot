@@ -26,8 +26,9 @@ def play_game(file_name="data/questions.csv"):
             return
 
         try:
+            
             user_answer = int(user_input) - 1
-            if question_dict['choices'][user_answer] == question_dict['correct_answer']:
+            if question_dict['choices'][user_answer].strip() == question_dict['correct_answer'].strip():
                 print(f"✅ Richtig! Your answer: {question_dict['correct_answer']}")
                 score += 1
             else:

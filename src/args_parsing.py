@@ -39,25 +39,26 @@ Hinweise:
     )
 
     parser.add_argument("--question", type=str, help="Stellen Sie direkt eine Frage")
-    parser.add_argument("--answer", type=str, help="The answer to add or remove.")
+    parser.add_argument("--answer", type=str, help="Die Antwort, die hinzugefügt oder entfernt werden soll.")
 
-    parser.add_argument("--add-question", action="store_true", help="Add a question")
-    parser.add_argument("--remove-question", action="store_true", help="Remove a question")
-    parser.add_argument("--add-answer", action="store_true", help="Add a new answer to a question or add a new question with an answer")
-    parser.add_argument("--remove-answer", action="store_true", help="Remove a specific answer")
+    parser.add_argument("--add-question", action="store_true", help="Frage hinzufügen")
+    parser.add_argument("--remove-question", action="store_true", help="Frage entfernen")
+    parser.add_argument("--add-answer", action="store_true", help="Eine neue Antwort zu einer Frage hinzufügen oder eine neue Frage mit Antwort hinzufügen")
+    parser.add_argument("--remove-answer", action="store_true", help="Eine spezifische Antwort entfernen")
 
-    parser.add_argument("--list-questions", "-q", action="store_true", help="List questions")
+    parser.add_argument("--list-questions", "-q", action="store_true", help="Fragen auflisten")
 
-    parser.add_argument("--importing", action="store_true", help="Importing from CSV file")
-    parser.add_argument("--filet-ype", choices=["CSV"], help="CSV Type")
-    parser.add_argument("--from-csv", help="Reading from a path")
-    parser.add_argument("--to-csv", help="Writing to a path")
+    parser.add_argument("--importing", action="store_true", help="Importieren aus einer CSV-Datei")
+    parser.add_argument("--file-type", choices=["CSV"], help="CSV-Typ")
+    parser.add_argument("--from-csv", help="Einlesen von einem Pfad")
+    parser.add_argument("--to-csv", help="Schreiben zu einem Pfad")
 
-    parser.add_argument("--start-game", action="store_true", help="A simple game")
- 
-    # New logging arguments
-    parser.add_argument('--log', action='store_true', help='Enable logging')
-    parser.add_argument('--log-level', choices=['INFO', 'WARNING'], default='WARNING', help='Set log level')
+    parser.add_argument("--start-game", action="store_true", help="Ein einfaches Spiel")
+
+    # Neue Logging-Argumente
+    parser.add_argument('--log', action='store_true', help='Logging aktivieren')
+    parser.add_argument('--log-level', choices=['INFO', 'WARNING'], default='WARNING', help='Log-Level festlegen')
+
 
 
     args = parser.parse_args()
@@ -105,7 +106,7 @@ Hinweise:
             play_game()
             return "start-game"
         
-        elif args.importing and args.filet_ype == "CSV":
+        elif args.importing and args.file_type == "CSV":
             new_data = read_csv_to_dict(args.from_csv)
             if new_data and validate_data(new_data):
                 write_dict_to_csv(args.to_csv, new_data)
