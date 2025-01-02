@@ -19,26 +19,24 @@ def parsing_args():
 
     parser = argparse.ArgumentParser(
         description="Chatbot Konsole App: Ein Tool für Quiz, Fragenmanagement und CSV-Import.",
-        epilog="""Beispiele:
-    python main.py --list-questions         Zeigt alle Fragen an
-    python main.py --add-question "Frage"   Fügt eine neue Frage hinzu
-    python main.py --start-quiz             Startet das Quiz-Spiel
-    python main.py --remove-question "Frage" Entfernt eine Frage"""
-    )
+        epilog="""Beispiele:""")
 
     parser.add_argument("--question", type=str, help="Stellen Sie direkt eine Frage")
-    parser.add_argument("--list-questions", "-q", action="store_true", help="Zeigt alle Fragen aus der Wissensbasis an")
-    parser.add_argument("--importing", action="store_true", help="Flagge zum Importieren neuer Daten und Ersetzen der bestehenden Wissensbasis")
-    parser.add_argument("--filetype", choices=["CSV"], help="Dateityp (derzeit wird nur CSV unterstützt)")
-    parser.add_argument("--newfile", help="Pfad zur neuen zu importierenden CSV-Datei")
-    parser.add_argument("--outputfile", help="Pfad zum Speichern der aktualisierten CSV-Datei new_data.csv")
-    parser.add_argument("--add", action="store_true", help="Add a new answer to an existing question or add a new question with an answer.")
-    parser.add_argument("--remove", action="store_true", help="Remove a specific answer from a question.")
-    parser.add_argument("--question-for-edit", type=str, help="The question to modify.")
-    parser.add_argument("--answer-for-adit", type=str, help="The answer to add or remove.")
-    parser.add_argument("--add-question", type=str, help="The question to modify.")
-    parser.add_argument("--remove-question", type=str, help="The question remove.")
-    parser.add_argument("--start-game", action="store_true", help="Startet das Quiz-Spiel.")
+    parser.add_argument("--answer", type=str, help="The answer to add or remove.")
+
+    parser.add_argument("--add-question", action="store_true", help="Add a question")
+    parser.add_argument("--remove-question", action="store_true", help="Remove a question")
+    parser.add_argument("--add-answer", action="store_true", help="Add a new answer to a question or add a new question with an answer")
+    parser.add_argument("--remove-answer", action="store_true", help="Remove a specific answer")
+
+    parser.add_argument("--list-questions", "-q", action="store_true", help="List questions")
+
+    parser.add_argument("--importing", action="store_true", help="Importing from CSV file")
+    parser.add_argument("--filet-ype", choices=["CSV"], help="CSV Type")
+    parser.add_argument("--from-csv", help="Reading from a path")
+    parser.add_argument("--to-csv", help="Writing to a path")
+
+    parser.add_argument("--start-game", action="store_true", help="A simple game")
  
     # New logging arguments
     parser.add_argument('--log', action='store_true', help='Enable logging')
@@ -57,24 +55,23 @@ def parsing_args():
 
         csv_data = "data/data.csv"
      
-
         # Load the existing data
         data_as_dictionary = read_csv_to_dict(csv_data)
 
-        if args.add and args.add_question:
-            add_question(data_as_dictionary, csv_data, args.add_question, args.answer_for_adit)
+        if args.add_question and args.question:
+            add_question(data_as_dictionary, csv_data, args.question, args.answer)
             return "adding-question"
         
-        elif args.remove and args.remove_question:
-            remove_question(data_as_dictionary, csv_data, args.remove_question)
+        elif args.remove_question and args.question:
+            remove_question(data_as_dictionary, csv_data, args.question)
             return "removing-question"
 
-        elif args.add and args.question_for_edit:
-            add_answer(data_as_dictionary, csv_data, args.question_for_edit, args.answer_for_adit)
+        elif args.add_answer and args.question:
+            add_answer(data_as_dictionary, csv_data, args.question, args.answer)
             return "adding-answer"
         
-        elif args.remove and args.question_for_edit:
-            remove_answer(data_as_dictionary, csv_data, args.question_for_edit, args.answer_for_adit)
+        elif args.remove_answer and args.question and args.answer:
+            remove_answer(data_as_dictionary, csv_data, args.question, args.answer)
             return "removing-answer"
 
         elif args.list_questions:
@@ -91,10 +88,10 @@ def parsing_args():
             play_game()
             return "start-game"
         
-        elif args.importing and args.filetype == "CSV":
-            new_data = read_csv_to_dict(args.newfile)
+        elif args.importing and args.filet_ype == "CSV":
+            new_data = read_csv_to_dict(args.from_csv)
             if new_data and validate_data(new_data):
-                write_dict_to_csv(args.outputfile, new_data)
+                write_dict_to_csv(args.to_csv, new_data)
                 return "importing-file"
         else:
             get_random_massage()
@@ -103,7 +100,7 @@ def parsing_args():
     except Exception as e:
         print(f"An error occurred: {e}")
         
-    else:
-        print("❌ Fehler: Ungültige Eingabe oder kein Argument angegeben.")
-        parser.print_help()
-        return "show-help"
+    # else:
+    #     print("❌ Fehler: Ungültige Eingabe oder kein Argument angegeben.")
+    #     parser.print_help()
+    #     return "show-help"

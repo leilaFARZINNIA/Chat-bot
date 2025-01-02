@@ -10,23 +10,27 @@ um das Python-Paket pytest zu installieren.
 > pytest tests/ : Dieser Befehl führt die Tests in einem Verzeichnis namens tests/ aus.
 > deactivate    : Dieser Befehl bringt dich zurück in die normale Systemumgebung.
 
-How to import data from CSV file:
-> python3 src/main.py --importing --filetype CSV --newfile data/new_data.csv --outputfile data/data.csv
+How to add question
+> python3 src/main.py --add-question --question "question a" --answer "answer 1"
+
+How to remove question
+> python3 src/main.py --remove-question --question "question a"
 
 How to add answer
-> python3 src/main.py --add --question-for-edit "question a" --answer-for-adit "answer a 1"
+> python3 src/main.py --add-answer --question "question a" --answer "answer a 1"
 
 How to remove answer
-> python3 src/main.py --remove --question-for-edit "question a" --answer-for-adit "answer a 1"
+> python3 src/main.py --remove-answer --question "question a" --answer "answer a 1"
 
 How to list question
 > python3 src/main.py --list-questions
 
-How to remove question
-> python3 src/main.py --remove --remove-question "question a"
+How to import data from CSV file:
+> python3 src/main.py --importing --filet-ype CSV --from-csv from/dir/file.csv --to-csv to/dir/file.csv
 
-How to add question
-> python3 src/main.py --add --add-question "question a" --answer-for-adit "answer 1"
+Playing game:
+> python3 src/main.py  --start-game
+
 
 How to test all files at once
 > python3 -m unittest discover -s tests -p "test_*.py"
