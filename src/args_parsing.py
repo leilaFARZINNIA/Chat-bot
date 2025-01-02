@@ -18,8 +18,25 @@ def list_questions(file_name="data/data.csv"):
 def parsing_args():
 
     parser = argparse.ArgumentParser(
-        description="Chatbot Konsole App: Ein Tool für Quiz, Fragenmanagement und CSV-Import.",
-        epilog="""Beispiele:""")
+        description="Verwalten einer Q&A-Anwendung.",
+        formatter_class=argparse.RawTextHelpFormatter,
+        epilog="""Beispiel:
+    python3 src/main.py --add-question --question "Frage A" --answer "Antwort 1"
+    python3 src/main.py --remove-question --question "Frage A"
+    python3 src/main.py --add-answer --question "Frage A" --answer "Antwort A 1"
+    python3 src/main.py --remove-answer --question "Frage A" --answer "Antwort A 1"
+    python3 src/main.py --list-questions
+    python3 src/main.py --importing --file-type CSV --from-csv von/dir/datei.csv --to-csv nach/dir/datei.csv
+    python3 src/main.py --start-game
+
+Hinweise:
+1. Um eine Frage hinzuzufügen, müssen sowohl --add-question als auch --question und --answer angegeben werden.
+2. Zum Entfernen einer Frage sind --remove-question und --question erforderlich.
+3. Beim Hinzufügen einer Antwort müssen --add-answer, --question und --answer verwendet werden.
+4. Zum Entfernen einer Antwort sind --remove-answer, --question und --answer erforderlich.
+5. Der Import von Daten aus einer CSV-Datei erfordert --importing, --file-type, --from-csv und --to-csv.
+"""
+    )
 
     parser.add_argument("--question", type=str, help="Stellen Sie direkt eine Frage")
     parser.add_argument("--answer", type=str, help="The answer to add or remove.")
