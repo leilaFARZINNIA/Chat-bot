@@ -1,9 +1,8 @@
 import argparse
 import logging
 
-from weather_analysis import get_weather_data,get_sensor_data
-from datetime import datetime, timedelta
 from chatbot_game import play_game
+from weather_analysis import analyze_weather
 from utils.formats import format_message
 from utils.logging import setup_logging
 from responses import handle_input, get_random_massage
@@ -57,8 +56,9 @@ Hinweise:
 
     parser.add_argument("--start-game", action="store_true", help="Ein einfaches Spiel")
 
-    parser.add_argument('--city', type=str, required=True, help='Name der Stadt für die Wettervorhersage')
-    parser.add_argument('--day', type=int, required=True, help='Anzahl der Tage für die Vorhersage')
+    parser.add_argument("--weather", action="store_true", help="Analysiert Wetterdaten")
+    parser.add_argument("--city", type=str, help="Name der Stadt für die Wettervorhersage")
+    parser.add_argument("--days", type=int, help="Anzahl der Tage für die Vorhersage")
 
     # Neue Logging-Argumente
     parser.add_argument('--log', action='store_true', help='Logging aktivieren')
@@ -81,7 +81,11 @@ Hinweise:
         # Load the existing data
         data_as_dictionary = read_csv_to_dict(csv_data)
 
-        if args.add_question and args.question:
+        if args.weather and args.city and args.days:
+            result = analyze_weather(args.city, args.days)
+            print(result)
+
+        elif args.add_question and args.question:
             add_question(data_as_dictionary, csv_data, args.question, args.answer)
             return "adding-question"
         
@@ -100,48 +104,6 @@ Hinweise:
         elif args.list_questions:
             list_questions()
             return "list-questions"
-        
-        elif args.city and args.day:
-
-         city = args.city
-         days = args.day
-
-         # Sensordaten von Firebase abrufen
-         sensor_temperatures, timestamps = get_sensor_data()
-
-         # Wetterdaten von WeatherAPI abrufen
-         weather_data = get_weather_data(city, days)
-
-         # Extrahieren der Vorhersagetemperaturen
-         forecast_temperatures = [weather_data['forecast']['forecastday'][i]['day']['avgtemp_c'] for i in range(days)]
-
-          # Berechnung der Temperaturdifferenz und Erstellen der Textausgabe
-         output_text = ""
-    
-         # Berechne das heutige Datum
-         today = datetime.today()
-    
-         for i in range(days):
-              sensor_temp = sensor_temperatures[i]
-              forecast_temp = forecast_temperatures[i]
-              timestamp = timestamps[i]
-        
-              # Temperaturdifferenz berechnen
-              temperature_difference = sensor_temp - forecast_temp
-              temperature_difference_str = f"+{temperature_difference:.2f}°C" if temperature_difference > 0 else f"{temperature_difference:.2f}°C"
-        
-             # Datum für jeden Tag berechnen
-              date_for_day = today + timedelta(days=i)
-              formatted_date = date_for_day.strftime("%Y-%m-%d")  # Format: YYYY-MM-DD
-             # Textausgabe für jeden Tag erstellen
-              output_text += f"Tag {i+1} ({formatted_date}):\n"
-              output_text += f"Vorhersagetemperatur: {forecast_temp}°C\n"
-              output_text += f"Reale Temperatur (Sensor): {sensor_temp}°C\n"
-              output_text += f"Temperaturdifferenz: {temperature_difference_str} (Die {'reale Temperatur ist höher' if temperature_difference > 0 else 'Vorhersage ist höher'})\n\n"
-
-    # Ausgabe anzeigen
-         print(output_text)
-            
 
         elif args.question:
             response = handle_input(args.question)

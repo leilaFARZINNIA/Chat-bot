@@ -1,6 +1,4 @@
 import requests
-import json
-import argparse
 from datetime import datetime, timedelta
 
 # Funktion zum Abrufen der Wetterdaten von WeatherAPI
@@ -24,17 +22,8 @@ def get_sensor_data():
     
     return sensor_temperatures, timestamps
 
-# Hauptfunktion zum Berechnen der Temperaturunterschiede und Erstellen der Ausgabe
-def main():
-    # Argumente für Stadt und Anzahl der Tage einlesen
-    parser = argparse.ArgumentParser(description='Wettervorhersage und Sensordaten vergleichen.')
-    parser.add_argument('--city', type=str, required=True, help='Name der Stadt für die Wettervorhersage')
-    parser.add_argument('--day', type=int, required=True, help='Anzahl der Tage für die Vorhersage')
-    args = parser.parse_args()
-
-    city = args.city
-    days = args.day
-
+# Funktion zur Analyse von Wetter- und Sensordaten
+def analyze_weather(city, days):
     # Sensordaten von Firebase abrufen
     sensor_temperatures, timestamps = get_sensor_data()
 
@@ -69,8 +58,5 @@ def main():
         output_text += f"Reale Temperatur (Sensor): {sensor_temp}°C\n"
         output_text += f"Temperaturdifferenz: {temperature_difference_str} (Die {'reale Temperatur ist höher' if temperature_difference > 0 else 'Vorhersage ist höher'})\n\n"
 
-    # Ausgabe anzeigen
-    print(output_text)
-
-if __name__ == '__main__':
-    main()
+    # Ergebnis zurückgeben
+    return output_text
