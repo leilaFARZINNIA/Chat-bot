@@ -2,6 +2,7 @@ import argparse
 import logging
 
 from chatbot_game import play_game
+from weather_analysis import analyze_weather
 from utils.formats import format_message
 from utils.logging import setup_logging
 from responses import handle_input, get_random_massage
@@ -55,6 +56,10 @@ Hinweise:
 
     parser.add_argument("--start-game", action="store_true", help="Ein einfaches Spiel")
 
+    parser.add_argument("--weather", action="store_true", help="Analysiert Wetterdaten")
+    parser.add_argument("--city", type=str, help="Name der Stadt für die Wettervorhersage")
+    parser.add_argument("--days", type=int, help="Anzahl der Tage für die Vorhersage")
+
     # Neue Logging-Argumente
     parser.add_argument('--log', action='store_true', help='Logging aktivieren')
     parser.add_argument('--log-level', choices=['INFO', 'WARNING'], default='WARNING', help='Log-Level festlegen')
@@ -76,7 +81,11 @@ Hinweise:
         # Load the existing data
         data_as_dictionary = read_csv_to_dict(csv_data)
 
-        if args.add_question and args.question:
+        if args.weather and args.city and args.days:
+            result = analyze_weather(args.city, args.days)
+            print(result)
+
+        elif args.add_question and args.question:
             add_question(data_as_dictionary, csv_data, args.question, args.answer)
             return "adding-question"
         

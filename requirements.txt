@@ -31,6 +31,9 @@ How to import data from CSV file:
 Playing game:
 > python3 src/main.py  --start-game
 
+How to analyze the weather:
+>python3  src/main.py  --weather --city Braunschweig --days 3
+
 
 How to test all files at once
 > python3 -m unittest discover -s tests -p "test_*.py"
