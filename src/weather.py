@@ -1,21 +1,12 @@
-import json
-import requests
 from datetime import datetime, timedelta
+
+from api.api_call import get_weather_data_with_endpoint
 
 # Funktion zum Abrufen der Wetterbedingungen von WeatherAPI
 def fetch_weather(location, date=None):
-    api_key = "7bdc493009ad4931ab585814251301"  # Ersetzen Sie dies durch Ihren tatsächlichen API-Schlüssel
-    base_url = "http://api.weatherapi.com/v1"
-
     try:
-        if not date or date == datetime.today().strftime('%Y-%m-%d'):
-            # Aktuelles Wetter abrufen
-            endpoint = f"{base_url}/current.json"
-            response = requests.get(endpoint, params={"key": api_key, "q": location, "lang": "de"})
-        else:
-            # Historisches Wetter für ein bestimmtes Datum abrufen
-            endpoint = f"{base_url}/history.json"
-            response = requests.get(endpoint, params={"key": api_key, "q": location, "dt": date, "lang": "de"})
+
+        response = get_weather_data_with_endpoint(location, date)
 
         # Wetterdaten analysieren und zurückgeben
         if response.status_code == 200:

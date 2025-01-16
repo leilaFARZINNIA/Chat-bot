@@ -1,20 +1,11 @@
-import requests
 from datetime import datetime, timedelta
 
-# Funktion zum Abrufen der Wetterdaten von WeatherAPI
-def get_weather_data(city, days):
-    weather_api_key = "7bdc493009ad4931ab585814251301"
-    weather_url = f"http://api.weatherapi.com/v1/forecast.json?key={weather_api_key}&q={city}&days={days}"
-
-    weather_response = requests.get(weather_url)
-    weather_data = weather_response.json()
-    return weather_data
+from api.api_call import get_sensor_data, get_weather_data
 
 # Funktion zum Abrufen der Sensordaten von Firebase
-def get_sensor_data():
-    firebase_url = "https://rasp-68283-default-rtdb.europe-west1.firebasedatabase.app/rasp-data.json"
-    firebase_response = requests.get(firebase_url)
-    firebase_data = firebase_response.json()
+def get_local_data():
+    
+    firebase_data = get_sensor_data()
 
     # Extrahieren der letzten "n" Sensordaten
     sensor_temperatures = [latest_data['temperature'] for latest_data in list(firebase_data.values())[-3:]]
@@ -25,7 +16,7 @@ def get_sensor_data():
 # Funktion zur Analyse von Wetter- und Sensordaten
 def analyze_weather(city, days):
     # Sensordaten von Firebase abrufen
-    sensor_temperatures, timestamps = get_sensor_data()
+    sensor_temperatures, timestamps = get_local_data()
 
     # Wetterdaten von WeatherAPI abrufen
     weather_data = get_weather_data(city, days)
@@ -42,7 +33,6 @@ def analyze_weather(city, days):
     for i in range(days):
         sensor_temp = sensor_temperatures[i]
         forecast_temp = forecast_temperatures[i]
-        timestamp = timestamps[i]
         
         # Temperaturdifferenz berechnen
         temperature_difference = sensor_temp - forecast_temp
