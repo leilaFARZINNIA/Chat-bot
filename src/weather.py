@@ -1,5 +1,6 @@
+import json
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Funktion zum Abrufen der Wetterbedingungen von WeatherAPI
 def fetch_weather(location, date=None):
@@ -49,10 +50,22 @@ def respond_to_user_query(location, event_date=None):
     
     return weather_response
 
-# Beispielverwendung
-if __name__ == "__main__":
-    user_location = "Braunschweig"
-    event_date = "2025-01-18"  # Ändern Sie dies auf None für aktuelles Wetter
 
-    response = respond_to_user_query(user_location, event_date)
-    print(response)
+def calculate_average_temperature(sensor_data, event_date):
+
+    # Konvertiere das Ereignisdatum in ein datetime-Objekt
+    event_day = datetime.strptime(event_date, "%Y-%m-%d")
+    three_days_ago = event_day - timedelta(days=3)
+
+    # Filtere die Temperaturmessungen innerhalb der letzten 3 Tage
+    temperatures = []
+    for record in sensor_data.values():
+        record_timestamp = datetime.strptime(record["timestamp"], "%Y-%m-%d %H:%M:%S")
+        if three_days_ago.date() <= record_timestamp.date() <= event_day.date():
+            temperatures.append(record["temperature"])
+
+    # Berechne die durchschnittliche Temperatur
+    if temperatures:
+        return sum(temperatures) / len(temperatures)
+    else:
+        return None
