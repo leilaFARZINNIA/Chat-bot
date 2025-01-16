@@ -2,8 +2,9 @@ import argparse
 import logging
 
 from chatbot_game import play_game
+from weather import respond_to_user_query
 from weather_analysis import analyze_weather
-from utils.formats import format_message
+from utils.formats import current_formated_date, format_message
 from utils.logging import setup_logging
 from responses import handle_input, get_random_massage
 from file_handling import add_answer, read_csv_to_dict, remove_answer, write_dict_to_csv, validate_data, add_question, remove_question,load_questions_from_csv
@@ -107,7 +108,10 @@ Hinweise:
 
         elif args.question:
             response = handle_input(args.question)
-            if response: print(format_message("Chatbot", response))
+            if(response and isinstance(response, list) and len(response[1]) > 0):
+                print(format_message("Chatbot", f"{response[0]} \n{respond_to_user_query(response[1][0], current_formated_date())}"))
+            else:
+               if response: print(format_message("Chatbot", response))
 
             return "commandline-ask"
         

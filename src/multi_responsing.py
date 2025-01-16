@@ -28,7 +28,7 @@ def antwort_finden(fragen, dics):
     antworten = []
     for frage in fragen:
         case_insensitive_dics = {key.lower(): value for key, value in dics.items()}
-        antwort = case_insensitive_dics.get(frage.lower(), "Entschuldigung, ich kenne die Antwort auf diese Frage nicht.")
+        antwort = case_insensitive_dics.get(frage.lower(), "Keine Antwrot gefundden")
         antworten.append(antwort)
     return antworten
 
@@ -61,7 +61,23 @@ def erkenne_begrüßung(eingabe):
 
     return None  # Keine Begrüßung erkannt
 
-# Hauptprogramm
+
+import re
+
+# Define a list of known locations
+KNOWN_LOCATIONS = [
+    "Berlin", "Munich", "Hamburg", "Cologne", "Frankfurt", 
+    "Stuttgart", "Düsseldorf", "Leipzig", "Dortmund", "Essen",
+    "Hanover", "Braunschweig", "Wolfenbüttel",  "Goslar", "Clausthal"
+]
+
+def search_location_from_text(text, locations=KNOWN_LOCATIONS):
+    matches = []
+    for location in locations:
+        if re.search(rf"\b{re.escape(location)}\b", text, re.IGNORECASE):
+            matches.append(location)
+    return matches
+
 def compuond_question(eingabe, fragen_liste):
 
     # Erkennung von Begrüßungen
@@ -75,9 +91,16 @@ def compuond_question(eingabe, fragen_liste):
         if fragen:
             # Finden der Antworten für die erkannten Fragen
             antworten = antwort_finden(fragen, fragen_liste)
-
+            if(antworten[0] == "Keine Antwrot gefundden"):
+                return "Entschuldigung, zurzeit haben wir keine Antwort für diese Frage."
             # Kombinieren der Antworten und Ausgabe
             kombinierte_antworten = antworten_kombinieren(antworten)
+
+            found_locations = search_location_from_text(kombinierte_antworten)
+            if(isinstance(found_locations, list) and len(found_locations) > 0):
+                return [kombinierte_antworten, found_locations]
+            
             return kombinierte_antworten
+        
         else:
             return "Keine gültigen Fragen erkannt."

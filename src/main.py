@@ -1,5 +1,6 @@
 import logging
-from utils.formats import format_message
+from weather import respond_to_user_query
+from utils.formats import current_formated_date, format_message
 from args_parsing import parsing_args
 from responses import handle_input
 
@@ -22,8 +23,10 @@ def main():
 
         if response is None: break
 
-        print(format_message("Chatbot", response))
-
+        if(response and isinstance(response, list) and len(response[1]) > 0):
+            print(format_message("Chatbot", f"{response[0]} \n{respond_to_user_query(response[1][0], current_formated_date())}"))
+        else: print(format_message("Chatbot", response))
+            
 
 def exit_app():
     if logging.getLogger().isEnabledFor(logging.INFO):
