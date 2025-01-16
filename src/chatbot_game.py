@@ -2,20 +2,13 @@ import random
 import logging
 from file_handling import load_questions_from_csv
 
-def display_visual_feedback(is_correct):
-    """
-    Zeigen Sie das visuelle Symbol ✅ oder ❌ basierend auf der Antwort des Benutzers an.
-    """
-    if is_correct:
-        print("✅ Correct!")
-    else:
-        print("❌ Incorrect!")
-
 def play_game(file_name="data/questions.csv"):
+
     if logging.getLogger().isEnabledFor(logging.INFO):
         logging.info(f"Log info: Quiz started")
         
     questions = load_questions_from_csv(file_name)
+
     random.shuffle(questions)
     total_questions = 10
     score = 0
@@ -33,11 +26,13 @@ def play_game(file_name="data/questions.csv"):
             return
 
         try:
+            
             user_answer = int(user_input) - 1
             if question_dict['choices'][user_answer].strip() == question_dict['correct_answer'].strip():
-                display_visual_feedback(True)  #Zeigen Sie das Symbol ✅ für die richtige Antwort an.
+                print(f"✅ Richtig! Your answer: {question_dict['correct_answer']}")
+                score += 1
             else:
-                display_visual_feedback(False)  # Zeigen Sie das Symbol ❌ für die falsche Antwort an.
+                print(f"❌ Falsch! The correct answer was: {question_dict['correct_answer']}")
         except (ValueError, IndexError):
             print("Invalid input. Please enter a number between 1 and 4.")
 
