@@ -1,32 +1,35 @@
-from src.file_handling import load_questions_from_csv
+from src.file_handling import load_questions_from_csv, validate_file_path
 from unittest.mock import mock_open, patch
 import unittest
+import os
 
-
-class TestLoadQuestionsFromCSV(unittest.TestCase):
-
-    @patch("builtins.open", new_callable=mock_open, read_data="question,choice1,choice2,choice3,choice4,correct_answer\nWhat is 2+2?,4,3,5,6,4\nWhat is the capital of France?,Paris,London,Berlin,Madrid,Paris")
+class TestLoadQuestionsFromCsv(unittest.TestCase):
+    @patch("builtins.open", new_callable=mock_open, read_data=(
+        "question,choice1,choice2,choice3,choice4,correct_answer\n"
+        "What is 2+2?,1,2,3,4,4\n"
+        "What is the capital of France?,Berlin,Madrid,Paris,Rome,Paris\n"
+    ))
     def test_load_questions_from_csv(self, mock_file):
-        # Arrange
-        expected_output = [
+        # Expected result
+        expected = [
             {
                 'question': 'What is 2+2?',
-                'choices': ['4', '3', '5', '6'],
+                'choices': ['1', '2', '3', '4'],
                 'correct_answer': '4'
             },
             {
                 'question': 'What is the capital of France?',
-                'choices': ['Paris', 'London', 'Berlin', 'Madrid'],
+                'choices': ['Berlin', 'Madrid', 'Paris', 'Rome'],
                 'correct_answer': 'Paris'
             }
         ]
-
-        # Act
-        result = load_questions_from_csv("fake_file.csv")
         
-        # Assert
-        self.assertEqual(result, expected_output)
-        mock_file.assert_called_once_with("fake_file.csv", 'r')
-
+        # Call the function
+        result = load_questions_from_csv("dummy.csv")
+        
+        # Assertions
+        self.assertEqual(result, expected)
+        mock_file.assert_called_once_with("dummy.csv", 'r')
+      
 if __name__ == "__main__":
     unittest.main()

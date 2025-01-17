@@ -15,8 +15,14 @@ def play_game(file_name="data/questions.csv"):
 
     print("Trivia game activated! Type 'exit' anytime to quit.")
 
+    progressIndicator = ""
+    percentIndicator = 0
     for i, question_dict in enumerate(questions[:total_questions]):
         print(f"\nQuestion {i + 1} of {total_questions}: {question_dict['question']}")
+        progressIndicator = progressIndicator+f"*****"
+        percentIndicator = percentIndicator + 10
+        print(progressIndicator, f"{percentIndicator}%")
+
         for idx, choice in enumerate(question_dict['choices']):
             print(f"  {idx + 1}. {choice}")
 
