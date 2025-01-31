@@ -89,8 +89,14 @@ python3 -m unittest discover -s tests -p "test_*.py"
 ## Neue Projekte innerhalb des aktuellen Projekts
 
 Zwei zusätzliche Projekte wurden in das aktuelle Projektverzeichnis aufgenommen:
-1. **chatbot-ui**: Die Web- und Mobile-UI mit Expo.
+1. **chatbot-ui**: Die Web- und Mobile-UI mit React Native und expo.
 2. **chatbot-server**: Der Server mit FastAPI, Python, PyMongo und Uvicorn.
+
+### Entpacke UI-Server-Projekt
+```bash
+unzip chatbot-ui.zip -d chatbot-ui
+unzip chatbot-server.zip -d chatbot-server
+```
 
 ### Server starten
 ```bash
