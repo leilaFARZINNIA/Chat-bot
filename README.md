@@ -82,3 +82,29 @@ python3 src/main.py --weather --city Braunschweig --days 3
 ## Alle Dateien gleichzeitig testen
 ```bash
 python3 -m unittest discover -s tests -p "test_*.py"
+```
+
+---
+
+## Neue Projekte innerhalb des aktuellen Projekts
+
+Zwei zusätzliche Projekte wurden in das aktuelle Projektverzeichnis aufgenommen:
+1. **chatbot-ui**: Die Web- und Mobile-UI mit Expo.
+2. **chatbot-server**: Der Server mit FastAPI, Python, PyMongo und Uvicorn.
+
+### Server starten
+```bash
+cd chatbot-server
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+### UI starten
+```bash
+cd chatbot-ui
+npm install
+npx expo start
+```
+
